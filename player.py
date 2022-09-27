@@ -40,7 +40,7 @@ class Player:
                     return True, ""
 
                 return (False,
-                        "Player must play the same suit as the leading suit")
+                        "You must play a card that has the same suit as the leading card")
             else:
                 # player can play any card
                 return True, ""
