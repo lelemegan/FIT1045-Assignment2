@@ -7,7 +7,7 @@ class BasicAIPlayer(Player):
     """
     DESCRIPTION:
         A basic AI player that automatically plays and passes cards.
-        Does not guarantee any advanced stratagies.
+        Does not guarantee any advanced strategies.
 
         When playing a card, it plays the lowest valid card (see Card.__lt__)
         When passing card, it passes the highest 3 cards (see Card.__lt__)

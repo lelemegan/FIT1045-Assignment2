@@ -7,7 +7,7 @@ class BetterAIPlayer(Player):
     """
     DESCRIPTION:
         A better AI player that automatically plays and passes cards.
-        Guarantee more advanced stratagies (compared to basic AI player).
+        Guarantee more advanced strategies (compared to basic AI player).
 
         When playing a card, it plays according to scenarios.
         When passing card, it prioritises king/ace of spades then largest cards.

@@ -6,15 +6,17 @@ class BasicAIPlayer:
     """
     DESCRIPTION:
         A basic AI player that automatically plays and passes cards.
-        Does not garentee any advanced stratagies.
+        Does not guarantee any advanced strategies.
 
         When playing a card, it plays the lowest valid card (see Card.__lt__)
         When passing card, it passes the highest 3 cards (see Card.__lt__)
+
     ATTRIBUTES:
         name: str, the name of the player
         hand: list of Cards, the list of cards this player holds
         round_score: int, the score for a current round
-        total_score: int, the score for the entier game
+        total_score: int, the score for the entire game
+
     OPERATIONS AVAILABLE:
         str/repr conversion to get the string of a player name
     """
@@ -29,6 +31,7 @@ class BasicAIPlayer:
         assign name attribute
         initialise hand, round_score and total_score to default value
         """
+
         self.name = name
         self.hand = []
         self.round_score = 0
@@ -43,8 +46,9 @@ class BasicAIPlayer:
         """
         takes in the game context including the trick and if hearts broken
         and in the environment of game context and currently holding cards,
-        determin if a given card is valid to play
+        determine if a given card is valid to play
         """
+
         # player is not leading
         if trick:
             leading_suit = trick[0].suit

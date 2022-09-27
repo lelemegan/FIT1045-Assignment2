@@ -16,7 +16,7 @@ class Hearts:
         Before each round is executed, players are generated,
         during each round, random deck are dealt to player, with the deck
         validity being validated.
-        The player then pass the cards if nessecary.
+        The player then pass the cards if necessary.
         The player pass the card to (round_number % len(players)) players to
         the right (in incrementing order).
         When the offset (round_number % len(players)) is 0, player do not pass
@@ -24,11 +24,13 @@ class Hearts:
         The round begins by invoking the Round class
         Player statistics are printed at the end of each round.
         End of game is being checked after execution of each round.
+
     ATTRIBUTES:
         target_score: int, the minimum target score as a game ending threshold
         player_cound: int, the number of player playing, has to be 3, 4 or 5
         players: list of Players, a ordered list of the player playing
         round_number: int, the number of round currently at. Starting from 1
+
     OPERATIONS AVAILABLE:
         the game will start execution when the object is created
         (when __init__ is called)
@@ -41,7 +43,7 @@ class Hearts:
 
     def __init__(self) -> None:
         """
-        get user input, initalise attributes and execute the game.
+        Get user input, initialise attributes and execute the game.
         """
 
         self.get_initalize_inputs()
@@ -52,7 +54,7 @@ class Hearts:
     def generate_players(self) -> None:
         """
         Generate a list of players based on player_count.
-        The generated players are assigned to self.players
+        The generated players are assigned to self.players.
         """
 
         self.players = []
@@ -62,7 +64,7 @@ class Hearts:
     def generate_deck(self) -> list[Card]:
         """
         Generate a deck based on player_count.
-        Removes specific cards if the nessecary.
+        Removes specific cards if the necessary.
         Return the list of cards unshuffled.
         """
 
@@ -83,7 +85,7 @@ class Hearts:
     def validate_card_segment(self, cards: list[Card]) -> bool:
         """
         Validate if a segment is valid for a player to receive as hand cards.
-        Return the result as a boolean
+        Return the result as a boolean.
         """
 
         for card in cards:
@@ -99,7 +101,7 @@ class Hearts:
         """
         Generate a deck, shuffle and dealt to players.
         The player will hold the cards after this function,
-        no return value applicable.
+        No return value applicable.
         """
 
         while True:
@@ -119,7 +121,7 @@ class Hearts:
     def get_initalize_inputs(self) -> None:
         """
         Get and validate user input from standard input.
-        The result is direcly assigned to the attributes.
+        The result is directly assigned to the attributes.
         """
 
         # get target_score
@@ -154,7 +156,7 @@ class Hearts:
 
     def get_absolute_index(self, index: int) -> int:
         """
-        Return the aboslute index of a player.
+        Return the absolute index of a player.
         Example: when there is 3 players, player index 3 will return 0,
         and index 4 will return 1 as it wraps around.
         """
@@ -243,7 +245,7 @@ class Hearts:
 
     def determine_winner(self) -> int:
         """
-        Determin the player who has the lowest score.
+        Determine the player who has the lowest score.
         Return the index of the player.
         """
 
@@ -274,7 +276,7 @@ class Hearts:
         (or not depending on round number),
         Player will play their round.
         After each round, moon shot will be notified if there are any.
-        The statistic will be printed
+        The statistic will be printed.
         Winner will be announced if the game ends.
         """
 
