@@ -171,7 +171,7 @@ class Hearts:
                 input_score = int(input("Please enter a target score: "))
 
                 if input_score <= 0:
-                    print("Target score needs to be atleast 1")
+                    print("Target score needs to be at least 1")
                     continue
 
                 self.target_score = input_score
