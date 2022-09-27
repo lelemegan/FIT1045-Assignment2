@@ -18,8 +18,6 @@ class BasicAIPlayer(Player):
         total_score: int, the score for the entier game
     OPERATIONS AVAILABLE:
         str/repr conversion to get the string of a player name
-
-        hiii
     """
 
     name: str
