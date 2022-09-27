@@ -121,6 +121,12 @@ class Human(Player):
         print("Hearts are {}broken".format("" if broken_hearts else "not "))
         print()
 
+        # automatically play card when 1 card left in hand
+        if len(self.hand) == 1:
+            card = self.hand[0]
+            del self.hand[0]
+            return card
+
         while True:
             card_index = self.get_single_user_input("Select a card to play: ",
                                                     (1, len(self.hand))) - 1
