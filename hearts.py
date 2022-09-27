@@ -13,25 +13,31 @@ class Hearts:
     DESCRIPTION:
         A hearts game.
         2 integer inputs (target_score, player_count) are being read from
-        standard input in the begninning.
-        Rounds are being executed until atleast one player reached the
+        standard input in the beginning.
+        Rounds are being executed until at least one player reaches the
         target_score and there is only one winner.
-        Before each round is executed, players are generated,
-        during each round, random deck are dealt to player, with the deck
-        validity being validated.
-        The player then pass the cards if nessecary.
+        
+        Before rounds are being executed, players are generated.
+
+        During the start of each round, random cards are dealt to players evenly.
+        Each player's hands should contain at least one heart or queen of spades.
+        The player then choose three cards to pass.
         The player pass the card to (round_number % len(players)) players to
         the right (in incrementing order).
         When the offset (round_number % len(players)) is 0, player do not pass
-        cards
-        The round begins by invoking the Round class
+        cards.
+
+        The round begins by invoking the Round class.
         Player statistics are printed at the end of each round.
+
         End of game is being checked after execution of each round.
+
     ATTRIBUTES:
         target_score: int, the minimum target score as a game ending threshold
         player_cound: int, the number of player playing, has to be 3, 4 or 5
         players: list of Players, a ordered list of the player playing
         round_number: int, the number of round currently at. Starting from 1
+
     OPERATIONS AVAILABLE:
         the game will start execution when the object is created
         (when __init__ is called)
@@ -45,7 +51,7 @@ class Hearts:
 
     def __init__(self) -> None:
         """
-        get user input, initalise attributes and execute the game.
+        Get user input, initialise attributes and execute the game.
         """
 
         print("Welcome to ♥ HEARTS ♥")
@@ -59,9 +65,9 @@ class Hearts:
     def generate_players(self) -> None:
         """
         Generate a list of players based on player_count.
-        Player will consist of atleast a Human, a BasicAIPlayer
-        and a BetterAIPlayer
-        The generated players are assigned to self.players
+        Player will consist of at least a Human, a BasicAIPlayer
+        and a BetterAIPlayer.
+        The generated players are assigned to self.players.
         """
 
         ai_players_types = [BasicAIPlayer, BetterAIPlayer]
@@ -99,7 +105,7 @@ class Hearts:
     def generate_deck(self) -> list[Card]:
         """
         Generate a deck based on player_count.
-        Removes specific cards if the nessecary.
+        Remove specific cards if the necessary.
         Return the list of cards unshuffled.
         """
 
@@ -120,7 +126,7 @@ class Hearts:
     def validate_card_segment(self, cards: list[Card]) -> bool:
         """
         Validate if a segment is valid for a player to receive as hand cards.
-        Return the result as a boolean
+        Return the result as a boolean.
         """
 
         for card in cards:
@@ -136,7 +142,7 @@ class Hearts:
         """
         Generate a deck, shuffle and dealt to players.
         The player will hold the cards after this function,
-        no return value applicable.
+        No return value applicable.
         """
 
         while True:
@@ -202,7 +208,7 @@ class Hearts:
         """
         Pass 3 cards to a n-th player to the right for all player
         (in ascending order).
-        when the n-th offset is 0, do not pass.
+        When the n-th offset is 0, do not pass.
         """
 
         player_offset = self.round_number % self.player_count
@@ -255,9 +261,9 @@ class Hearts:
 
     def end_of_game(self) -> bool:
         """
-        Check if atleast one player reached target_score AND
-        there are only one winner with minimum score
-        Returning the result as boolean value
+        Check if at least one player reached target_score and
+        there is only one winner with minimum score
+        Return the result as boolean.
         """
 
         target_score_reached = False
@@ -282,7 +288,7 @@ class Hearts:
 
     def determine_winner(self) -> int:
         """
-        Determin the player who has the lowest score.
+        Determine the player who has the lowest score.
         Return the index of the player.
         """
 
@@ -312,9 +318,9 @@ class Hearts:
         In each round, cards are dealt, 3 cards are passed
         (or not depending on round number),
         Player will play their round.
-        After each round, moon shot will be notified if there are any.
-        The statistic will be printed
-        Winner will be announced if the game ends.
+        After each round, the latest statistics is printed 
+        and players are notified if there is moon shot.
+        Winner announced when the game ends.
         """
 
         while True:

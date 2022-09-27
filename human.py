@@ -4,6 +4,21 @@ from player import Player
 
 
 class Human(Player):
+    """
+    DESCRIPTION:
+        A human player manually plays and passes cards.
+
+        When playing a card, player is prompted to choose card from hand.
+        When passing card, player is prompted to choose three cards from hand.
+        [Messages are printed to guide player to enter correct value(s)]
+    
+    ATTRIBUTES:
+        Inherit the attributes of base player.
+
+    OPERATIONS AVAILABLE:
+        
+    """
+
     def __init__(self) -> None:
         raw_name = input("Please enter your name: ")
         super().__init__(raw_name)
@@ -11,6 +26,15 @@ class Human(Player):
 
     def get_single_user_input(
       self, prompt: str, range: tuple[int] = ()) -> int:
+        '''
+        Get valid integer within a range from user.
+
+        Guide user to input an integer in range.
+        (Only printed where applicable)
+
+        Returns an integer in range.
+        '''
+
         while True:
             try:
                 val = int(input(prompt))
@@ -26,6 +50,17 @@ class Human(Player):
 
     def get_user_input_cs(
       self, prompt: str, count: int, range: tuple[int] = ()) -> tuple[int]:
+        '''
+        Get valid integers within a range from user.
+
+        Guide user to enter integer in range.
+        Guide user to enter the integers in correct format (integers should
+        be separated by commas).
+        Guide user to enter correct number of integers.
+        (Only printed where applicable)
+        
+        Returns the integers as a tuple
+        '''
         while True:
             try:
                 raw_seperated = input(prompt).split(self.delimiter)
@@ -45,6 +80,16 @@ class Human(Player):
                 print(err)
 
     def get_card_art_from_list(self, cards: list[Card]):
+        '''
+        Get card art from list.
+
+        Convert each card into a string.
+        *Note: the conversion returns a string shape of the card art
+
+
+
+
+        '''
         card_arts = [str(card) for card in cards]
         card_lines = [art.split("\n") for art in card_arts]
         card_appended_lines = zip(*card_lines)
