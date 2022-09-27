@@ -39,7 +39,7 @@ class Human(Player):
             try:
                 val = int(input(prompt))
                 err = (f"You must enter a number in the range of {range[0]} to"
-                       + f"{range[1]}")
+                       + f" {range[1]}")
                 assert val >= range[0], err
                 assert val <= range[1], err
                 return val
@@ -63,8 +63,8 @@ class Human(Player):
         '''
         while True:
             try:
-                raw_seperated = input(prompt).split(self.delimiter)
-                result = [int(i) for i in raw_seperated]
+                raw_separated = input(prompt).split(self.delimiter)
+                result = [int(i) for i in raw_separated]
                 all_value_in_range = all((i >= range[0])
                                          and (i <= range[1])
                                          for i in result)
@@ -74,7 +74,7 @@ class Human(Player):
                 assert len(result) == count, f"You must input {count} integers"
                 return tuple(result)
             except ValueError:
-                print("You must input integers seperated by '"
+                print("You must input integers separated by '"
                       + self.delimiter + "'")
             except AssertionError as err:
                 print(err)
@@ -122,7 +122,7 @@ class Human(Player):
         print()
 
         while True:
-            card_index = self.get_single_user_input("Select a card to play:",
+            card_index = self.get_single_user_input("Select a card to play: ",
                                                     (1, len(self.hand))) - 1
             card = self.hand[card_index]
 
@@ -141,7 +141,7 @@ class Human(Player):
         print()
 
         prompt = (f"Select 3 cards to pass to {passing_to} \n"
-                  + f"(Enter numbers seperated with '{self.delimiter}'):")
+                  + f"(Enter numbers separated with '{self.delimiter}'): ")
         
         while True:
             card_indices = self.get_user_input_cs(prompt, 3, (1, len(self.hand)))
