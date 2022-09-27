@@ -21,6 +21,7 @@ class Round:
         When an action happened, including player plays a card, hearts being
         broken and
         player takes the trick, the respecitve messages are being printed.
+
     ATTRIBUTES:
         players: list of Players, a ordered list of the player playing
         hearts_broken: boolean, to record if hearts are broken in this round
@@ -29,6 +30,7 @@ class Round:
         current_trick: list of Cards, the trick of the current iteration
         current_starting_player_index: the index of leading player of the
         current iteration
+
     OPERATIONS AVAILABLE:
         the round will start execution when the object is created (when
         __init__ is called)
@@ -44,6 +46,7 @@ class Round:
         """
         initialise the round, and execute the round.
         """
+
         self.players = players
         self.hearts_broken = False
         self.starting_player_index = self.determin_first_player()
@@ -56,6 +59,7 @@ class Round:
         determine the index of the player holding Two of Clubs,
         assign the attribute and return the index
         """
+
         player_index = 0
         for player in self.players:
             if Card(Rank.Two, Suit.Clubs) in player.hand:
@@ -66,6 +70,7 @@ class Round:
         """
         take in a integer and get the remainder dividing the length of player.
         """
+
         return index % len(self.players)
 
     def determine_taker_index(self) -> int:
@@ -73,6 +78,7 @@ class Round:
         determine the player index of the player who takes the trick
         and return as integer
         """
+
         max_card_index = 0
         max_card = self.current_trick[0]
         for card_index in range(len(self.current_trick)):
@@ -88,6 +94,7 @@ class Round:
         """
         determine the points the taker get, and return as integer
         """
+
         points = 0
         for card in self.current_trick:
             if card.suit == Suit.Hearts:
@@ -101,6 +108,7 @@ class Round:
         prepare a new iteration by clearing up the trick and assigning the
         new_player_index
         """
+
         self.current_starting_player_index = new_player_starting_index
         self.current_trick = []
 
@@ -110,6 +118,7 @@ class Round:
         done by player.
         The played card is returned.
         """
+
         player = self.players[player_index]
         
         print(f"It is {player}'s turn")
@@ -135,6 +144,7 @@ class Round:
         Execute a an iteration. Players executes their turn in ascending index
         order
         """
+
         starting_index = self.current_starting_player_index
         player_length = len(self.players)
         for i in range(starting_index, starting_index + player_length):
@@ -146,6 +156,7 @@ class Round:
         Execute a round, controls the flow of game including determining the
         leading player of each iteration
         """
+        
         while len(self.players[0].hand) > 0:
             self.execute_iteration()
             penalty = self.determine_penalty()
