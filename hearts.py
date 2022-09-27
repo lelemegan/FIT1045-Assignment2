@@ -162,7 +162,7 @@ class Hearts:
     def get_initalize_inputs(self) -> None:
         """
         Get and validate user input from standard input.
-        The result is direcly assigned to the attributes.
+        The result is directly assigned to the attributes.
         """
 
         # get target_score
@@ -197,7 +197,7 @@ class Hearts:
 
     def get_absolute_index(self, index: int) -> int:
         """
-        Return the aboslute index of a player.
+        Return the absolute index of a player.
         Example: when there is 3 players, player index 3 will return 0,
         and index 4 will return 1 as it wraps around.
         """
@@ -262,7 +262,7 @@ class Hearts:
     def end_of_game(self) -> bool:
         """
         Check if at least one player reached target_score and
-        there is only one winner with minimum score
+        there is only one winner with minimum score.
         Return the result as boolean.
         """
 
