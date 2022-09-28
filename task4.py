@@ -16,7 +16,7 @@ class Hearts:
         Before each round is executed, players are generated,
         during each round, random deck are dealt to player, with the deck
         validity being validated.
-        The player then pass the cards if nessecary.
+        The player then pass the cards if necessary.
         The player pass the card to (round_number % len(players)) players to
         the right (in incrementing order).
         When the offset (round_number % len(players)) is 0, player do not pass
@@ -24,11 +24,13 @@ class Hearts:
         The round begins by invoking the Round class
         Player statistics are printed at the end of each round.
         End of game is being checked after execution of each round.
+
     ATTRIBUTES:
         target_score: int, the minimum target score as a game ending threshold
         player_cound: int, the number of player playing, has to be 3, 4 or 5
         players: list of Players, a ordered list of the player playing
         round_number: int, the number of round currently at. Starting from 1
+
     OPERATIONS AVAILABLE:
         the game will start execution when the object is created
         (when __init__ is called)
@@ -41,7 +43,7 @@ class Hearts:
 
     def __init__(self) -> None:
         """
-        get user input, initalise attributes and execute the game.
+        Get user input, initialise attributes and execute the game.
         """
 
         self.get_initalize_inputs()
@@ -52,7 +54,7 @@ class Hearts:
     def generate_players(self) -> None:
         """
         Generate a list of players based on player_count.
-        The generated players are assigned to self.players
+        The generated players are assigned to self.players.
         """
 
         self.players = []
@@ -62,7 +64,7 @@ class Hearts:
     def generate_deck(self) -> list[Card]:
         """
         Generate a deck based on player_count.
-        Removes specific cards if the nessecary.
+        Removes specific cards if the necessary.
         Return the list of cards unshuffled.
         """
 
@@ -83,7 +85,7 @@ class Hearts:
     def validate_card_segment(self, cards: list[Card]) -> bool:
         """
         Validate if a segment is valid for a player to receive as hand cards.
-        Return the result as a boolean
+        Return the result as a boolean.
         """
 
         for card in cards:
@@ -99,7 +101,7 @@ class Hearts:
         """
         Generate a deck, shuffle and dealt to players.
         The player will hold the cards after this function,
-        no return value applicable.
+        No return value applicable.
         """
 
         while True:
@@ -118,8 +120,9 @@ class Hearts:
 
     def get_initalize_inputs(self) -> None:
         """
-        Get and validate user input from standard input.
-        The result is direcly assigned to the attributes.
+        Get and validate user input (targest_score, player_count) from 
+        standard input.
+        The result is directly assigned to the attributes.
         """
 
         # get target_score
@@ -133,6 +136,7 @@ class Hearts:
 
                 self.target_score = input_score
                 break
+
             except ValueError:
                 print("Target score has to be a whole number")
 
@@ -149,12 +153,13 @@ class Hearts:
 
                 self.player_count = input_score
                 break
+
             except ValueError:
                 print("Player count has to be 3, 4 or 5")
 
     def get_absolute_index(self, index: int) -> int:
         """
-        Return the aboslute index of a player.
+        Return absolute index of a player.
         Example: when there is 3 players, player index 3 will return 0,
         and index 4 will return 1 as it wraps around.
         """
@@ -192,7 +197,7 @@ class Hearts:
         """
         Calculate the points,
         assign the round_points of a player to total_point.
-        A player does not receive points if they has 26 points,
+        A player does not receive points if they have 26 points,
         all other player recieve 26 points (Shot the moon).
         """
 
@@ -216,9 +221,9 @@ class Hearts:
 
     def end_of_game(self) -> bool:
         """
-        Check if atleast one player reached target_score AND
-        there are only one winner with minimum score
-        Returning the result as boolean value
+        Check if at least one player reached target_score and
+        there is only one winner with minimum score.
+        Return the result as boolean.
         """
 
         target_score_reached = False
@@ -243,7 +248,7 @@ class Hearts:
 
     def determine_winner(self) -> int:
         """
-        Determin the player who has the lowest score.
+        Determine the player who has the lowest score.
         Return the index of the player.
         """
 
@@ -269,32 +274,37 @@ class Hearts:
         """
         Prepare a game and execute the rounds.
         The game continues until end_of_game() conditions reached
-        (until the function returns True)
+        (until the function returns True).
         In each round, cards are dealt, 3 cards are passed
-        (or not depending on round number),
-        Player will play their round.
-        After each round, moon shot will be notified if there are any.
-        The statistic will be printed
-        Winner will be announced if the game ends.
+        (or not depending on round number).
+        Player play their round.
+        After each round, player notified of moon shot if there are any.
+        Player statistics printed.
+        Winner announced if the game ends.
         """
 
         while True:
+
             print(f"========= Starting round {self.round_number} =========")
             self.dealt_card()
-            # DEBUG
+            
             for player in self.players:
                 print(f"{player} was dealt {player.hand}")
-            # END DEBUG
+
             self.pass_cards()
             Round(self.players)
+
             print(f"========= End of round {self.round_number} =========")
             self.calculate_points()
             self.print_player_statistics()
+
+            # check if game ends
             if self.end_of_game():
                 winner_index = self.determine_winner()
                 winner = self.players[winner_index]
                 print(f"{winner} is the winner!")
                 break
+
             self.round_number += 1
 
 

@@ -6,12 +6,14 @@ class Rank(Enum):
     """
     DESCRIPTION:
         Ranks available in a set of playing cards.
+
     VALUES:
         The values are in the following ascending order.
         (Note that Two is the lowest rank and Ace is the highest rank.)
         Two, Three, ..., Ten, Jak, Queen, King, Ace
+
     OPERATIONS AVAILABLE:
-        You can use the less then operator (>) to compare between ranks
+        You can use the less then operator (>) to compare between ranks.
     """
 
     Two = 2
@@ -43,7 +45,7 @@ class Suit(Enum):
         Clubs, Diamonds, Spades, Hearts
 
     OPERATIONS AVAILABLE:
-        You can use the less then operator (>) to compare between suits
+        You can use the less then operator (>) to compare between suits.
 
     IMPLEMENTED BY:
         Xuanao Zhao 33332835
@@ -64,14 +66,17 @@ class Card:
     DESCRIPTION:
         A card that can be found in a regular set of playing card.
         Only capable of general cards (rank and number),
-        and incapable of special cards (Joker cards)
+        and incapable of special cards (Joker cards).
+
     ATTRIBUTES:
         Rank: the rank of the card representing
         Suit: the suit of the card representing
+
     OPERATIONS AVAILABLE:
-        the less then order comparison operator (>) to compare between cards
-        the equality comparison operator (==) to compare between cards
-        the repr or str conversion to convert into readable format
+        The less then order comparison operator (>) to compare between cards.
+        The equality comparison operator (==) to compare between cards.
+        The repr or str conversion to convert into readable format.
+
     IMPLEMENTED BY:
         Xuanao Zhao 33332835
     """
@@ -81,7 +86,7 @@ class Card:
 
     def __init__(self, rank: Rank, suit: Suit) -> None:
         """
-        initailise the object with rank and suit
+        Initialise the object with rank and suit.
         """
 
         self.rank = rank
