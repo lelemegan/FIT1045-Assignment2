@@ -3,13 +3,31 @@ from cards import Card, Rank, Suit
 
 
 class Player:
+    '''
+    DESCRIPTION:
+    
 
+    ATTRIBUTES:
+        name: str, the name of the player
+        hand: list of Cards, the list of cards this player holds
+        round_score: int, the score for a current round
+        total_score: int, the score for the entire game
+
+    OPERATIONS AVAILABLE:
+        str/repr conversion to get the string of a player name
+    '''
+    
     name: str
     hand: list[Card]
     round_score: int
     total_score: int
 
     def __init__(self, name: str) -> None:
+        '''
+        Assign name attribute.
+        Initialise hand, round_score and total_score to default value.
+        '''
+        
         self.name = name
         self.hand = []
         self.round_score = 0
@@ -22,6 +40,13 @@ class Player:
         return self.__str__()
 
     def check_valid_play(self, card: Card, trick: list[Card], broken_hearts: bool) -> tuple(bool, str):
+        '''
+        Takes in the game context including the trick and if hearts broken
+        and in the environment of game context and currently holding cards,
+        determine if a given card is valid to play.
+        Return result as tuple.
+        '''
+        
         # player is not leading
         if trick:
             leading_suit = trick[0].suit

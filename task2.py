@@ -28,8 +28,8 @@ class BasicAIPlayer:
 
     def __init__(self, name: str) -> None:
         """
-        assign name attribute
-        initialise hand, round_score and total_score to default value
+        Assign name attribute.
+        Initialise hand, round_score and total_score to default value.
         """
 
         self.name = name
@@ -44,9 +44,10 @@ class BasicAIPlayer:
       broken_hearts: bool
       ) -> tuple[bool, str]:
         """
-        takes in the game context including the trick and if hearts broken
+        Takes in the game context including the trick and if hearts broken
         and in the environment of game context and currently holding cards,
-        determine if a given card is valid to play
+        determine if a given card is valid to play.
+        Return result as tuple.
         """
 
         # player is not leading
@@ -105,7 +106,7 @@ class BasicAIPlayer:
     def play_card(
       self, trick: list[Card], broken_hearts: bool) -> Card:
         """
-        takes in the game context including the trick and if hearts broken
+        Takes in the game context including the trick and if hearts broken
         and in the environment of game context and currently holding cards,
         return the lowest valid card to play from hand
         the card is removed from hand
@@ -120,7 +121,7 @@ class BasicAIPlayer:
 
     def pass_cards(self) -> list[Card]:
         """
-        return 3 highest cards in hand,
+        Return 3 highest cards in hand,
         the 3 cards are being removed from hand
         """
         sorted_hand_cards = sorted(self.hand)[::-1]  # in decending order

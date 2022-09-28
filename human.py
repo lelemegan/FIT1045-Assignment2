@@ -98,6 +98,12 @@ class Human(Player):
 
 
     def print_hand(self) -> None:
+        '''
+        Prints the card(s） that is/are currently in player hand/
+        Each card is printed as a card art.
+        A number is printed below each card.
+        '''
+
         print("Cards available:")
         print(self.get_card_art_from_list(self.hand))
         numberings = ""
@@ -108,6 +114,13 @@ class Human(Player):
         print(numberings)
 
     def print_trick(self, trick) -> None:
+        '''
+        Prints the trick for an interation.
+        If trick is empty, a line is printed to tell user.
+        If trick is not empty, the cards in the current trick
+        is printed in the form of card arts.
+        '''
+
         if not trick:
             print("Trick is currently empty.")
             return
@@ -116,6 +129,17 @@ class Human(Player):
         print(self.get_card_art_from_list(trick))
 
     def play_card(self, trick: list[Card], broken_hearts: bool) -> Card:
+        '''
+        Print current trick.
+        Print current cards in hand.
+        Print current status of broken_hearts (broken or not).
+        Prompt user to select a card to play.
+        Print error messages to guide user where applicable.
+        Automatically select card for user when there is one card left in hand.
+        Return selected card.
+        '''
+
+        
         self.print_trick(trick)
         self.print_hand()
         print("Hearts are {}broken".format("" if broken_hearts else "not "))
@@ -143,6 +167,13 @@ class Human(Player):
             return card
 
     def pass_cards(self, passing_to: str) -> list[Card]:
+        '''
+        Print current cards in hand.
+        Prompt user to select three cards to pass.
+        Print error messages to guide user where applicable.
+        Return selected three cards as list.
+        '''
+        
         self.print_hand()
         print()
 

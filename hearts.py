@@ -161,7 +161,8 @@ class Hearts:
 
     def get_initalize_inputs(self) -> None:
         """
-        Get and validate user input from standard input.
+        Get and validate user input (targest_score, player_count) from 
+        standard input.
         The result is directly assigned to the attributes.
         """
 
@@ -176,6 +177,7 @@ class Hearts:
 
                 self.target_score = input_score
                 break
+
             except ValueError:
                 print("Target score has to be a whole number")
 
@@ -192,12 +194,13 @@ class Hearts:
 
                 self.player_count = input_score
                 break
+
             except ValueError:
                 print("Player count has to be 3, 4 or 5")
 
     def get_absolute_index(self, index: int) -> int:
         """
-        Return the absolute index of a player.
+        Return absolute index of a player.
         Example: when there is 3 players, player index 3 will return 0,
         and index 4 will return 1 as it wraps around.
         """
@@ -237,7 +240,7 @@ class Hearts:
         """
         Calculate the points,
         assign the round_points of a player to total_point.
-        A player does not receive points if they has 26 points,
+        A player does not receive points if they have 26 points,
         all other player recieve 26 points (Shot the moon).
         """
 
@@ -314,28 +317,33 @@ class Hearts:
         """
         Prepare a game and execute the rounds.
         The game continues until end_of_game() conditions reached
-        (until the function returns True)
+        (until the function returns True).
         In each round, cards are dealt, 3 cards are passed
-        (or not depending on round number),
-        Player will play their round.
-        After each round, the latest statistics is printed 
-        and players are notified if there is moon shot.
-        Winner announced when the game ends.
+        (or not depending on round number).
+        Player play their round.
+        After each round, player notified of moon shot if there are any.
+        Player statistics printed.
+        Winner announced if the game ends.
         """
 
         while True:
+
             print(f"========= Starting round {self.round_number} =========")
             self.dealt_card()
             self.pass_cards()
             Round(self.players)
+
             print(f"========= End of round {self.round_number} =========")
             self.calculate_points()
             self.print_player_statistics()
+
+            # check if game ends
             if self.end_of_game():
                 winner_index = self.determine_winner()
                 winner = self.players[winner_index]
                 print(f"{winner} is the winner!")
                 break
+
             self.round_number += 1
 
 

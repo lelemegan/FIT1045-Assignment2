@@ -19,7 +19,7 @@ class BasicAIPlayer(Player):
         total_score: int, the score for the entire game
 
     OPERATIONS AVAILABLE:
-        str/repr conversion to get the string of a player name
+    
     """
 
     name: str

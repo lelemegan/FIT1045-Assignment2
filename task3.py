@@ -9,7 +9,7 @@ class Round:
         Rounds has iterations where each iterations plays with a new empty
         trick.
         Each iterations lets each player plays card in ascending order of
-        players in a list
+        players in a list.
         At the end of each iteration, penalty is calculated depending on the
         cards in trick,
         and the penalty is added to round_point of the taking player.
@@ -54,8 +54,8 @@ class Round:
 
     def determine_first_player(self) -> int:
         """
-        Determine the index of the player holding Two of Clubs,
-        assign the attribute and return the index.
+        Determine the index of the player holding Two of Clubs.
+        Return the index as integer.
         """
 
         player_index = 0
@@ -64,17 +64,20 @@ class Round:
                 return player_index
             player_index += 1
 
-    def get_absolute_player_index(self, index: int) -> None:
+    def get_absolute_player_index(self, index: int) -> int:
         """
-        Take in a integer and get the remainder dividing the length of player.
+        Absolute player index refers to the actual index of player in 
+        players list. 
+        Take in an integer and get the remainder dividing the length of player.
+        Return absolute player index as integer.
         """
 
         return index % len(self.players)
 
     def determine_taker_index(self) -> int:
         """
-        Determine player index of the player who takes the trick.
-        Return as integer.
+        Determine player index of the taker (player who takes the trick).
+        Return taker index as integer.
         """
 
         max_card_index = 0
@@ -90,8 +93,8 @@ class Round:
 
     def determine_penalty(self) -> int:
         """
-        Determine the points the taker get
-        Return as integer
+        Determine the points the taker gets.
+        Return penalty as integer.
         """
 
         points = 0
@@ -105,7 +108,7 @@ class Round:
     def prepare_new_iteration(self, new_player_starting_index) -> None:
         """
         Prepare a new iteration by clearing up the trick and assigning the
-        new_player_index
+        new_player_index.
         """
 
         self.current_starting_player_index = new_player_starting_index
@@ -113,9 +116,9 @@ class Round:
 
     def execute_player_turn(self, player_index) -> Card:
         """
-        Execute a player turn in an iteration. Messages are printed for action
-        done by player.
-        The played card is returned.
+        Execute a player turn in an iteration. 
+        Messages are printed for action done by player.
+        Return card played by player.
         """
 
         player = self.players[player_index]
@@ -132,8 +135,8 @@ class Round:
 
     def execute_iteration(self) -> None:
         """
-        Execute a an iteration. Players executes their turn in ascending index
-        order
+        Execute an iteration. 
+        Players execute their turns in ascending index order.
         """
 
         starting_index = self.current_starting_player_index
@@ -145,7 +148,7 @@ class Round:
     def execute_round(self) -> None:
         """
         Execute a round, controls the flow of game including determining the
-        leading player of each iteration
+        leading player of each iteration.
         """
         
         while len(self.players[0].hand) > 0:
