@@ -47,11 +47,13 @@ class Round:
         Initialise the round, and execute the round.
         """
 
+        # initalise the class attributes
         self.players = players
         self.hearts_broken = False
         self.starting_player_index = self.determine_first_player()
         self.current_trick = []
         self.current_starting_player_index = self.starting_player_index
+        # start the round
         self.execute_round()
 
     def determine_first_player(self) -> int:
@@ -60,8 +62,10 @@ class Round:
         Return the index as integer.
         """
 
+        # initalise a player_index as counter
         player_index = 0
         for player in self.players:
+            # if player holds Two of Clubs, return that player's index
             if Card(Rank.Two, Suit.Clubs) in player.hand:
                 return player_index
             player_index += 1
@@ -88,10 +92,13 @@ class Round:
         Return taker index as integer.
         """
 
+        # assume the first card is the largest card in leading suit
         max_card_index = 0
         max_card = self.current_trick[0]
         for card_index in range(len(self.current_trick)):
             card = self.current_trick[card_index]
+            # if any card has the same suit that is larger
+            # replace the index
             if card > max_card and card.suit == max_card.suit:
                 max_card = card
                 max_card_index = card_index
@@ -137,6 +144,7 @@ class Round:
         
         card_played = player.play_card(self.current_trick, self.hearts_broken)
 
+        # sleep 1 second before announcing the card played
         sleep(1)
 
         if self.current_trick:
@@ -160,6 +168,7 @@ class Round:
 
         starting_index = self.current_starting_player_index
         player_length = len(self.players)
+        # each player play their cards
         for i in range(starting_index, starting_index + player_length):
             player_index = self.get_absolute_player_index(i)
             self.execute_player_turn(player_index)
@@ -171,6 +180,7 @@ class Round:
         Executes until players finish playing all of their cards.
         """
 
+        # execute round until player has no cards
         while len(self.players[0].hand) > 0:
             self.execute_iteration()
             penalty = self.determine_penalty()

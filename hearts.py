@@ -56,10 +56,12 @@ class Hearts:
 
         print("Welcome to ♥ HEARTS ♥")
 
+        # initalise the attributes
         self.human_player = Human()
         self.get_initalize_inputs()
         self.generate_players()
         self.round_number = 1
+        # run the game
         self.execute_rounds()
 
     def generate_players(self) -> None:
@@ -77,10 +79,8 @@ class Hearts:
         human_position = random.randint(0, self.player_count - 1)
         if human_position in absolute_positions:
             absolute_positions.remove(human_position)
-
         basic_ai_position = random.choice(absolute_positions)
         absolute_positions.remove(basic_ai_position)
-
         better_ai_position = random.choice(absolute_positions)
 
         self.players = []
@@ -90,7 +90,7 @@ class Hearts:
             if i == human_position:
                 self.players.append(self.human_player)
                 continue
-            
+
             if i == basic_ai_position:
                 self.players.append(BasicAIPlayer(ai_player_name))
                 continue
@@ -109,11 +109,13 @@ class Hearts:
         Return the list of cards unshuffled.
         """
 
+        # generate a standard deck of cards
         deck = []
         for suit in Suit:
             for rank in Rank:
                 deck.append(Card(rank, suit))
 
+        # remove cards based on game settings
         if self.player_count == 5:
             deck.remove(Card(Rank.Two, Suit.Diamonds))
             deck.remove(Card(Rank.Two, Suit.Spades))
@@ -129,13 +131,16 @@ class Hearts:
         Return the result as a boolean.
         """
 
+        # check all cards other then Queen of Spades
         for card in cards:
             if card.suit == Suit.Spades and card.rank == Rank.Queen:
                 continue
-
+            
+            # if encounter atleast one non-heart card, return True
             if card.suit != Suit.Hearts:
                 return True
 
+        # if only heart cards are found, return False
         return False
 
     def dealt_card(self) -> None:
@@ -145,19 +150,29 @@ class Hearts:
         No return value applicable.
         """
 
+        # repeat until a valid set of card for all player
         while True:
+            # generate a deck of card (removed unwanted cards) and shuffle the cards
             cards = self.generate_deck()
             random.shuffle(cards)
             deck_size = len(cards)
+            # get length of cards each player needs to hold
             segment_size = deck_size / self.player_count
+            # segment the deck of card into player_count segments, and assign the cards to them
+            valid = True
             for i in range(self.player_count):
                 seg_from = int(i*segment_size)
                 seg_to = int((i+1)*segment_size)
                 deck_segment = cards[seg_from:seg_to]
                 if not self.validate_card_segment(deck_segment):
-                    continue
+                    # if any segment is invalid, regenerate a card
+                    valid = False
+                    break
                 self.players[i].hand = deck_segment
-            return
+
+            if valid:
+                # only return if valid, or else regenerate cards
+                return
 
     def get_initalize_inputs(self) -> None:
         """
@@ -217,9 +232,12 @@ class Hearts:
 
         player_offset = self.round_number % self.player_count
 
+        # if passing card is not needed, return
         if not player_offset:
             return
 
+        # temporary store the passed card into a dictionary
+        # where the trget_index is the key
         target_cards = {}
         for i in range(self.player_count):
             target_index = self.get_absolute_index(i + player_offset)
@@ -233,6 +251,7 @@ class Hearts:
                 cards = source_player.pass_cards()
             target_cards[target_index] = cards
 
+        # add cards from temporary dictoray to player's hand
         for i in target_cards.keys():
             self.players[i].hand += target_cards[i]
 
@@ -245,6 +264,7 @@ class Hearts:
         No return value.
         """
 
+        # check points for each player
         for i in range(len(self.players)):
             player = self.players[i]
 
@@ -258,8 +278,10 @@ class Hearts:
                     if j == i:
                         continue
                     self.players[j].total_score += 26
+                # return directly after adding score
                 return
 
+            # add to total_score and reset round_score
             player.total_score += player.round_score
             player.round_score = 0
 
@@ -270,23 +292,21 @@ class Hearts:
         Return the result as boolean.
         """
 
+        # check if anyone reached target score
         target_score_reached = False
         for player in self.players:
             if player.total_score >= self.target_score:
                 target_score_reached = True
                 break
 
+        # return if targert score not reached
         if not target_score_reached:
             return False
 
-        scores = []
-        for player in self.players:
-            scores.append(player.total_score)
-
-        min_score_count = 0
-        for score in scores:
-            if score == min(scores):
-                min_score_count += 1
+        # get scores from players,
+        # and count how many players have minimum score
+        scores = [player.total_score for player in self.players]
+        min_score_count = scores.count(min(scores))
 
         return min_score_count == 1
 
@@ -296,11 +316,13 @@ class Hearts:
         Return index of winning player as integer.
         """
 
+        # assume the first player has the lowest score
         min_score = self.players[0].total_score
         min_score_player_index = 0
         for i in range(len(self.players)):
             player = self.players[i]
             if player.total_score < min_score:
+                # if someone has lower score, replace player index
                 min_score = player.total_score
                 min_score_player_index = i
 

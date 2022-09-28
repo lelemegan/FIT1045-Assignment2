@@ -133,12 +133,14 @@ class Card:
             "A",
         ]
         
+        # get values to be inserted into the card template
         suit_symbol = suit_symbols[self.suit.name]
         value_top = rank_values[self.rank.value] + " "
         value_bottom = " " + rank_values[self.rank.value]
         if self.rank == Rank.Ten:
             value_top = value_bottom = "10"
 
+        # insert the values into the card template
         shape = ("┌─────┐\n"
                  + f"│{value_top}   │\n"
                  + f"│  {suit_symbol}  │\n"
@@ -163,7 +165,9 @@ class Card:
         Return result as boolean.
         """
 
+        # If same suit, compare rank
         if self.suit == other.suit:
             return self.rank < other.rank
 
+        # if different suit, compare suit
         return self.suit < other.suit

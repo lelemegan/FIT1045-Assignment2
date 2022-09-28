@@ -36,10 +36,14 @@ class BasicAIPlayer(Player):
         Remove the lowest valid card to play from hand.
         Return the card that is removed.
         """
+
         sorted_hand_cards = sorted(self.hand)
+
+        # play the first card that is valid
         for i in range(len(sorted_hand_cards)):
             card = sorted_hand_cards[i]
             if self.check_valid_play(card, trick, broken_hearts)[0]:
+                # delete the card from list before returning
                 del sorted_hand_cards[i]
                 self.hand = sorted_hand_cards
                 return card
@@ -49,7 +53,11 @@ class BasicAIPlayer(Player):
         Remove the 3 highest cards from hand.
         Return the 3 highest cards that is removed as list.
         """
-        sorted_hand_cards = sorted(self.hand)[::-1]  # in decending order
+
+        # sort in decending order
+        sorted_hand_cards = sorted(self.hand)[::-1]
+        
+        # pass the three largest card and remove them from hand
         result = sorted_hand_cards[:3]
         del sorted_hand_cards[:3]
         self.hand = sorted_hand_cards

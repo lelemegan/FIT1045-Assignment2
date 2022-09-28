@@ -44,6 +44,7 @@ class Human(Player):
         '''
 
         while True:
+            # loop until valid input
             try:
                 val = int(input(prompt))
                 err = (f"You must enter a number in the range of {range[0]} to"
@@ -69,10 +70,13 @@ class Human(Player):
         
         Return the integers as a tuple.
         '''
+        
         while True:
+            # loop until valid input
             try:
                 raw_separated = input(prompt).split(self.delimiter)
                 result = [int(i) for i in raw_separated]
+                # check if all value in specified range
                 all_value_in_range = all((i >= range[0])
                                          and (i <= range[1])
                                          for i in result)
@@ -94,10 +98,16 @@ class Human(Player):
         Combine the multiline card art horizontally.
         return the combined art as a string.
         '''
+
+        # get art string from each card as a list
         card_arts = [str(card) for card in cards]
+        # split each string into lines
         card_lines = [art.split("\n") for art in card_arts]
+        # zip the lines together into horizontal segments
         card_appended_lines = zip(*card_lines)
+        # join each horizontal segments into one line
         card_appended_arts = ["".join(line) for line in card_appended_lines]
+        # join the lines into one string
         return "\n".join(card_appended_arts)
 
     def print_hand(self) -> None:
@@ -109,6 +119,7 @@ class Human(Player):
 
         print("Cards available:")
         print(self.get_card_art_from_list(self.hand))
+        # generate the numbering labels of the cards
         numberings = ""
         for i in range(len(self.hand)):
             numberings += " " * (4 - len(str(i + 1)))
@@ -154,6 +165,7 @@ class Human(Player):
             del self.hand[0]
             return card
 
+        # loop until a valid card is selected
         while True:
             card_index = self.get_single_user_input("Select a card to play: ",
                                                     (1, len(self.hand))) - 1
@@ -161,6 +173,7 @@ class Human(Player):
 
             validate = self.check_valid_play(card, trick, broken_hearts)
 
+            # if not valid, repeat the loop
             if not validate[0]:
                 print(validate[1])
                 continue
@@ -183,15 +196,19 @@ class Human(Player):
         prompt = (f"Select 3 cards to pass to {passing_to} \n"
                   + f"(Enter numbers separated with '{self.delimiter}'): ")
         
+        # loop until user get correct input
         while True:
             card_indices = self.get_user_input_cs(prompt, 3, (1, len(self.hand)))
             # check duplication
             if not any(card_indices.count(i) > 1 for i in card_indices):
+                # break the loop if valid input
                 break
             print("You cannot enter the same number multiple times")
 
+        # get list of cards from user input
         cards = [self.hand[i - 1] for i in card_indices]
         
+        # remove cards from hand
         for card in cards:
             self.hand.remove(card)
 

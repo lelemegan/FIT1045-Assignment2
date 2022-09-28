@@ -120,8 +120,10 @@ class Card:
         Return result as boolean.
         """
 
+        # if same suit compare rank
         if self.suit == other.suit:
             return self.rank < other.rank
 
+        # if different suit, compare suit
         return self.suit < other.suit
 

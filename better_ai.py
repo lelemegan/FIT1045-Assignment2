@@ -28,9 +28,12 @@ class BetterAIPlayer(Player):
         """
 
         sorted_hand_cards = sorted(self.hand)
+
+        # play the first card that is valid
         for i in range(len(sorted_hand_cards)):
             card = sorted_hand_cards[i]
             if self.check_valid_play(card, trick, broken_hearts)[0]:
+                # delete card from hand before returning
                 del sorted_hand_cards[i]
                 self.hand = sorted_hand_cards
                 return card
@@ -57,11 +60,15 @@ class BetterAIPlayer(Player):
         if not trick:
             return self.play_lowest_card(trick, broken_hearts)
 
+        # filter out the valid cards
         valid_cards = list(filter(
             lambda card: self.check_valid_play(card, trick, broken_hearts)[0],
             self.hand))
 
+        # extract the first card's suit as leading suit
         leading_suit = trick[0].suit
+
+        # filter out all the card in leading suit.
         same_suits = sorted(list(filter(
             lambda card: card.suit == leading_suit,
             valid_cards)))[::-1]
@@ -113,6 +120,8 @@ class BetterAIPlayer(Player):
         k_of_spades = Card(Rank.King, Suit.Spades)
         a_of_spades = Card(Rank.Ace, Suit.Spades)
         selected = []
+
+        # prioritise K of spades and A of spades
         if k_of_spades in self.hand:
             selected.append(k_of_spades)
             self.hand.remove(k_of_spades)
@@ -121,7 +130,7 @@ class BetterAIPlayer(Player):
             selected.append(a_of_spades)
             self.hand.remove(a_of_spades)
 
-        # prioritse on largest hearts
+        # prioritse on largest hearts for the rest
         sorted_hand = sorted(self.hand)[::-1]
         for card in sorted_hand:
             if len(selected) >= 3:
