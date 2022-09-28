@@ -67,9 +67,15 @@ class Round:
     def get_absolute_player_index(self, index: int) -> int:
         """
         Absolute player index refers to the actual index of player in 
-        players list. 
+        players list.
         Take in an integer and get the remainder dividing the length of player.
         Return absolute player index as integer.
+        
+        Example:
+            With a player count of 4, index 4 -> becomes 0 (self.players[0])
+            With a player count of 5, index 11 -> becomes 1 (self.players[1])
+            because the index wraps around the player list.
+            When an index is out of range, it wraps back to the beginning.
         """
 
         return index % len(self.players)
@@ -107,6 +113,7 @@ class Round:
 
     def prepare_new_iteration(self, new_player_starting_index) -> None:
         """
+        Takes in the player index (int) who leads the next trick.
         Prepare a new iteration by clearing up the trick and assigning the
         new_player_index.
         """
@@ -116,7 +123,8 @@ class Round:
 
     def execute_player_turn(self, player_index) -> Card:
         """
-        Execute a player turn in an iteration. 
+        Execute a player turn in an iteration.
+        Take in the index of a player (int).
         Messages are printed for action done by player.
         Return card played by player.
         """
@@ -137,6 +145,7 @@ class Round:
         """
         Execute an iteration. 
         Players execute their turns in ascending index order.
+        Execute until all player has played their card in this trick.
         """
 
         starting_index = self.current_starting_player_index
@@ -149,6 +158,7 @@ class Round:
         """
         Execute a round, controls the flow of game including determining the
         leading player of each iteration.
+        Executes until players finish playing all of their cards.
         """
         
         while len(self.players[0].hand) > 0:

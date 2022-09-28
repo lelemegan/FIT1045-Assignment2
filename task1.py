@@ -46,9 +46,6 @@ class Suit(Enum):
 
     OPERATIONS AVAILABLE:
         You can use the less then operator (>) to compare between suits.
-
-    IMPLEMENTED BY:
-        Xuanao Zhao 33332835
     """
 
     Clubs = 0
@@ -73,12 +70,9 @@ class Card:
         Suit: the suit of the card representing
 
     OPERATIONS AVAILABLE:
-        The less then order comparison operator (>) to compare between cards.
+        The less than order comparison operator (>) to compare between cards.
         The equality comparison operator (==) to compare between cards.
         The repr or str conversion to convert into readable format.
-
-    IMPLEMENTED BY:
-        Xuanao Zhao 33332835
     """
 
     rank: Rank
@@ -113,7 +107,8 @@ class Card:
     def __eq__(self, other: Card) -> bool:
         """
         Override the == operator.
-        Compare suit and rank if they are equivalent
+        Compare suit and rank if they are equivalent.
+        Return result as boolean
         """
 
         return self.rank == other.rank and self.suit == other.suit
@@ -121,7 +116,8 @@ class Card:
     def __lt__(self, other: Card) -> bool:
         """
         Override the < operator.
-        Compare suit, if suit is the same, compare rank
+        Compare suit, if suit is the same, compare rank.
+        Return result as boolean.
         """
 
         if self.suit == other.suit:

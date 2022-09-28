@@ -164,6 +164,7 @@ class Hearts:
         Get and validate user input (targest_score, player_count) from 
         standard input.
         The result is directly assigned to the attributes.
+        No return value applicable.
         """
 
         # get target_score
@@ -225,7 +226,6 @@ class Hearts:
             source_player = self.players[i]
             target_player = self.players[target_index]
             if source_player is self.human_player:
-                # print(f"[DEBUG] in A, {source_player.name}")
                 # if the player instance is self.human (same memory address if in CPython),
                 # pass name as name
                 cards = source_player.pass_cards(target_player.name)
@@ -242,6 +242,7 @@ class Hearts:
         assign the round_points of a player to total_point.
         A player does not receive points if they have 26 points,
         all other player recieve 26 points (Shot the moon).
+        No return value.
         """
 
         for i in range(len(self.players)):

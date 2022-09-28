@@ -186,9 +186,7 @@ class Hearts:
             cards = source_player.pass_cards()
             target_cards[target_index] = cards
 
-            # DEBUG
             print(f"{source_player} passed {cards} to {target_player}")
-            # END DEBUG
 
         for i in target_cards.keys():
             self.players[i].hand += target_cards[i]

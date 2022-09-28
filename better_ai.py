@@ -16,12 +16,14 @@ class BetterAIPlayer(Player):
         Inherit the attributes of base player.
 
     OPERATIONS AVAILABLE:
-        
+        str conversion will return the player name
+        repr connversion will return what str returns (the player name).
+        (Inherited from Player)
     """
 
     def play_lowest_card(self, trick: list[Card], broken_hearts: bool) -> Card:
         """
-        Takes in the game context including the trick and if hearts broken status.
+        Takes in the game context including the trick (list of Card) and if hearts broken (bool) status.
         Removes and returns the lowest valid card to play from hand.
         """
 
@@ -35,7 +37,7 @@ class BetterAIPlayer(Player):
 
     def play_card(self, trick: list[Card], broken_hearts: bool) -> Card:
         '''
-        Takes in the game context including the trick and if hearts broken.
+        Takes in the game context including the trick (list of Card) and if hearts broken (bool).
         Implements advanced strategies of playing cards compared to basic AI.
         
         Strategy used depends on four scenarios namely:
@@ -49,7 +51,6 @@ class BetterAIPlayer(Player):
 
         The card to play is removed from player hand and returned according 
         to the scenario.
-        
         '''
         
         # if player leads

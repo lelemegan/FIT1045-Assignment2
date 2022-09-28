@@ -19,7 +19,9 @@ class BasicAIPlayer(Player):
         total_score: int, the score for the entire game
 
     OPERATIONS AVAILABLE:
-    
+        str conversion will return the player name
+        repr connversion will return what str returns (the player name).
+        (Inherited from Player)
     """
 
     name: str
@@ -30,7 +32,7 @@ class BasicAIPlayer(Player):
     def play_card(
       self, trick: list[Card], broken_hearts: bool) -> Card:
         """
-        Takes in the game context including the trick and if hearts broken.
+        Takes in the game context including the trick (list of Card) and if hearts broken (bool).
         Remove the lowest valid card to play from hand.
         Return the card that is removed.
         """

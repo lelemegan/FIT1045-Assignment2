@@ -5,8 +5,9 @@ from cards import Card, Rank, Suit
 class Player:
     '''
     DESCRIPTION:
-    
-
+        The abstract class for Player, to be inherited by other player types.
+        initialises the class with a given player name.
+        Provide functionality to validate if a card is valid to player.
     ATTRIBUTES:
         name: str, the name of the player
         hand: list of Cards, the list of cards this player holds
@@ -34,17 +35,28 @@ class Player:
         self.total_score = 0
 
     def __str__(self) -> None:
+        """
+        Override the str() conversion.
+        Return the player name
+        (the __repr__() invokes this method)
+        """
+
         return self.name
 
     def __repr__(self) -> None:
+        """
+        Override the repr() conversion.
+        Return the player name
+        (invokes __str__())
+        """
         return self.__str__()
 
     def check_valid_play(self, card: Card, trick: list[Card], broken_hearts: bool) -> tuple(bool, str):
         '''
-        Takes in the game context including the trick and if hearts broken
-        and in the environment of game context and currently holding cards,
+        Takes in the game context including the trick (list of Card) and if hearts broken (bool).
+        In the environment of game context and currently holding cards,
         determine if a given card is valid to play.
-        Return result as tuple.
+        Return result as tuple of boolean (reuslt) and string (error message) if applicable.
         '''
         
         # player is not leading

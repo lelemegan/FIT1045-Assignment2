@@ -18,7 +18,8 @@ class BasicAIPlayer:
         total_score: int, the score for the entire game
 
     OPERATIONS AVAILABLE:
-        str/repr conversion to get the string of a player name
+        str conversion will return the player name
+        repr connversion will return what str returns (the player name).
     """
 
     name: str
@@ -43,12 +44,12 @@ class BasicAIPlayer:
       trick: list[Card],
       broken_hearts: bool
       ) -> tuple[bool, str]:
-        """
-        Takes in the game context including the trick and if hearts broken
-        and in the environment of game context and currently holding cards,
+        '''
+        Takes in the game context including the trick (list of Card) and if hearts broken (bool).
+        In the environment of game context and currently holding cards,
         determine if a given card is valid to play.
-        Return result as tuple.
-        """
+        Return result as tuple of boolean (reuslt) and string (error message) if applicable.
+        '''
 
         # player is not leading
         if trick:
@@ -141,7 +142,7 @@ class BasicAIPlayer:
     def __repr__(self):
         """
         Override the repr() conversion.
-        Return a human readable string of the card
+        Return the name of the player
         (the same string as __str__())
         """
         return self.__str__()

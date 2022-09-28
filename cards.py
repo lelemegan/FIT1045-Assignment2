@@ -31,7 +31,10 @@ class Rank(Enum):
     Ace = 14
 
     def __lt__(self, other: Rank) -> bool:
-        # override "<" operator
+        """
+        Override the '<' operator.
+        Compare two ranks value, return result as bool
+        """
         return other.value > self.value
 
 
@@ -46,9 +49,6 @@ class Suit(Enum):
 
     OPERATIONS AVAILABLE:
         You can use the less then operator (>) to compare between suits
-
-    IMPLEMENTED BY:
-        Xuanao Zhao 33332835
     """
 
     Clubs = 0
@@ -57,7 +57,10 @@ class Suit(Enum):
     Hearts = 3
 
     def __lt__(self, other: Suit) -> bool:
-        # override "<" operator
+        """
+        Override the '<' operator.
+        Compare two suits value, return result as bool
+        """
         return other.value > self.value
 
 
@@ -76,9 +79,6 @@ class Card:
         The less than order comparison operator (>) to compare between cards.
         The equality comparison operator (==) to compare between cards.
         The repr or str conversion to convert into readable format.
-
-    IMPLEMENTED BY:
-        Xuanao Zhao 33332835
     """
 
     rank: Rank
@@ -104,7 +104,7 @@ class Card:
     def __str__(self) -> str:
         """
         Override the str() conversion.
-        Return a human readable string of the card
+        Return a char art for better user experience.
         (the __repr__() invokes this method).
         """
 
