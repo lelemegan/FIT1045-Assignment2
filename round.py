@@ -190,4 +190,5 @@ class Round:
             taker = self.players[taker_index]
             taker.round_score += penalty
             print(f"{taker} takes the trick. Points received: {penalty}")
+            sleep(2)
             self.prepare_new_iteration(taker_index)
