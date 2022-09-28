@@ -16,10 +16,18 @@ class Human(Player):
         Inherit the attributes of base player.
 
     OPERATIONS AVAILABLE:
-        
+        str conversion will return the player name
+        repr connversion will return what str returns (the player name).
+        (Inherited from Player)
     """
 
     def __init__(self) -> None:
+        """
+        Override the constructor of Player,
+        Gets name from standard input.
+        Invokes the parent initialiser to initialise the object
+        and sets a deliminater for multiple number input.
+        """
         raw_name = input("Please enter your name: ")
         super().__init__(raw_name)
         self.delimiter = ','
@@ -81,14 +89,10 @@ class Human(Player):
 
     def get_card_art_from_list(self, cards: list[Card]):
         '''
-        Get card art from list.
-
-        Convert each card into a string.
-        *Note: the conversion returns a string shape of the card art
-
-
-
-
+        Takes in a list of cards.
+        Get card art from each cards by using the str() conversion.
+        Combine the multiline card art horizontally.
+        return the combined art as a string.
         '''
         card_arts = [str(card) for card in cards]
         card_lines = [art.split("\n") for art in card_arts]
@@ -96,10 +100,9 @@ class Human(Player):
         card_appended_arts = ["".join(line) for line in card_appended_lines]
         return "\n".join(card_appended_arts)
 
-
     def print_hand(self) -> None:
         '''
-        Prints the card(s） that is/are currently in player hand/
+        Prints the card(s) that is/are currently in player hand/
         Each card is printed as a card art.
         A number is printed below each card.
         '''
@@ -141,11 +144,9 @@ class Human(Player):
         Return selected card.
         '''
 
-        
         self.print_trick(trick)
         self.print_hand()
-        print("Hearts are {}broken".format("" if broken_hearts else "not "))
-        print()
+        print("Hearts are {}broken\n".format("" if broken_hearts else "not "))
 
         # automatically play card when 1 card left in hand
         if len(self.hand) == 1:
