@@ -72,8 +72,10 @@ class Card:
         and incapable of special cards (Joker cards).
 
     ATTRIBUTES:
-        Rank: the rank of the card representing
-        Suit: the suit of the card representing
+        rank: the rank of the card representing
+        suit: the suit of the card representing
+        settings: STATIC, a dictionary for card settings across all cards.
+          - pretty_print: bool, pretty text art when copnverting to str.
 
     OPERATIONS AVAILABLE:
         The less than order comparison operator (>) to compare between cards.
@@ -81,6 +83,10 @@ class Card:
         The repr or str conversion to convert into readable format.
     """
 
+    # static variable for settings
+    settings: bool = {
+        "pretty_print": False
+    }
     rank: Rank
     suit: Suit
 
@@ -101,12 +107,30 @@ class Card:
 
         return self.__str__()
 
+    def pretty_print(value: bool = True):
+        """
+        Important ! Should be called on the Class, not object.
+        Use Card.pretty_print() instead of card_object.pretty_print()
+        (This is a static method)
+        Takes in an optional value, on or off in the form of boolean.
+        Value is defaulted to True
+        Toggles pretty print in self.settings (a static variable).
+        Applys across all instances of Card
+        """
+
+        Card.settings["pretty_print"] = value
+
     def __str__(self) -> str:
         """
         Override the str() conversion.
+        Returns a human readable representation in string of the card
+        If pretty_print is enabled:
         Return a char art for better user experience.
         (the __repr__() invokes this method).
         """
+
+        if not Card.settings["pretty_print"]:
+            return f"{self.rank.name} of {self.suit.name}"
 
         suit_symbols = {
             "Clubs": "♣",

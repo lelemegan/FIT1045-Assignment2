@@ -56,6 +56,9 @@ class Hearts:
 
         print("Welcome to ♥ HEARTS ♥")
 
+        # toggle pretty print on
+        Card.pretty_print()
+
         # initalise the attributes
         self.human_player = Human()
         self.get_initalize_inputs()
