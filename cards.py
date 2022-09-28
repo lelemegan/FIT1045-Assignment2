@@ -151,6 +151,7 @@ class Card:
         """
         Override the == operator.
         Compare suit and rank if they are equivalent.
+        Return result as boolean.
         """
 
         return self.rank == other.rank and self.suit == other.suit
@@ -159,6 +160,7 @@ class Card:
         """
         Override the < operator.
         Compare suit, if suit is the same, compare rank.
+        Return result as boolean.
         """
 
         if self.suit == other.suit:

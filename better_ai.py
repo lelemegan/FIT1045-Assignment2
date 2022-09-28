@@ -35,8 +35,9 @@ class BetterAIPlayer(Player):
 
     def play_card(self, trick: list[Card], broken_hearts: bool) -> Card:
         '''
+        Takes in the game context including the trick and if hearts broken.
         Implements advanced strategies of playing cards compared to basic AI.
-
+        
         Strategy used depends on four scenarios namely:
         - when player is lead
         - when player is not lead, when player hand has card that is same suit
@@ -99,10 +100,12 @@ class BetterAIPlayer(Player):
     def pass_cards(self) -> list[Card]:
         """
         Implements advanced strategies of passing cards compared to basic AI.
+
         Checks if king of spades or ace of spades is in player hand.
         King of spades and ace of spades are prioritised to pass.
         Other card(s) chosen to pass from largest.
-        Chosen cards to pass are returned as a list.
+        
+        Return chosen cards to pass as list.
         """
 
         # check if K/A of spades exists

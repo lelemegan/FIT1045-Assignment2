@@ -54,12 +54,12 @@ class Human(Player):
         Get valid integers within a range from user.
 
         Guide user to enter integer in range.
-        Guide user to enter the integers in correct format (integers should
-        be separated by commas).
-        Guide user to enter correct number of integers.
-        (Only printed where applicable)
+        Guide user to enter the integers in correct format 
+        (integers should be separated by commas).
+        Guide user to enter correct number of integers
+        (Only printed where applicable).
         
-        Returns the integers as a tuple
+        Return the integers as a tuple.
         '''
         while True:
             try:
@@ -115,6 +115,7 @@ class Human(Player):
 
     def print_trick(self, trick) -> None:
         '''
+        Takes in the game context about the trick.
         Prints the trick for an interation.
         If trick is empty, a line is printed to tell user.
         If trick is not empty, the cards in the current trick
@@ -130,6 +131,7 @@ class Human(Player):
 
     def play_card(self, trick: list[Card], broken_hearts: bool) -> Card:
         '''
+        Takes in the game context including the trick and if hearts broken.
         Print current trick.
         Print current cards in hand.
         Print current status of broken_hearts (broken or not).

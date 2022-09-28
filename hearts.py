@@ -200,7 +200,7 @@ class Hearts:
 
     def get_absolute_index(self, index: int) -> int:
         """
-        Return absolute index of a player.
+        Return absolute index of player as integer.
         Example: when there is 3 players, player index 3 will return 0,
         and index 4 will return 1 as it wraps around.
         """
@@ -292,7 +292,7 @@ class Hearts:
     def determine_winner(self) -> int:
         """
         Determine the player who has the lowest score.
-        Return the index of the player.
+        Return index of winning player as integer.
         """
 
         min_score = self.players[0].total_score

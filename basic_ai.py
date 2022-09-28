@@ -45,7 +45,7 @@ class BasicAIPlayer(Player):
     def pass_cards(self) -> list[Card]:
         """
         Remove the 3 highest cards from hand.
-        Returns the 3 highest cards that is removed.
+        Return the 3 highest cards that is removed as list.
         """
         sorted_hand_cards = sorted(self.hand)[::-1]  # in decending order
         result = sorted_hand_cards[:3]
